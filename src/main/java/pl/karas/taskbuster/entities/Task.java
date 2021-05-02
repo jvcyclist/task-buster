@@ -14,7 +14,7 @@ public class Task {
     private Long id;
     private String name;
     private String description;
-    //Spring <----
+    //Sprint <----
     private Integer storyPoints;
     //Progress enum <----
     //assignedPerson <--- User

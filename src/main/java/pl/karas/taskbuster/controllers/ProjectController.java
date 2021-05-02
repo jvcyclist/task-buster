@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.karas.taskbuster.entities.Project;
 import pl.karas.taskbuster.repositories.ProjectRepository;
 
-import javax.websocket.server.PathParam;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
