@@ -35,10 +35,11 @@ public class ProjectController {
     public ResponseEntity getProjectById(@PathVariable("id") String id){
         Optional<Project> projectById = this.projectRepository
                 .findById(Long.valueOf(id));
+
         return projectById.isPresent() ?
                 ResponseEntity.ok(projectById.get())
                 : ResponseEntity.badRequest()
-                                .body("Project with given number not found");
+                                .body("Project with given id not found");
     }
 
 }
