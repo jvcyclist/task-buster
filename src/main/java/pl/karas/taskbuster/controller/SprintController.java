@@ -1,4 +1,4 @@
-package pl.karas.taskbuster.controllers;
+package pl.karas.taskbuster.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,26 +7,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.karas.taskbuster.entities.Sprint;
-import pl.karas.taskbuster.repositories.SprintRepository;
+import pl.karas.taskbuster.model.entities.Sprint;
+import pl.karas.taskbuster.repository.SprintRepository;
+import pl.karas.taskbuster.service.SprintService;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class SprintController {
 
-    SprintRepository sprintRepository;
+    SprintService sprintService;
 
     @Autowired
-    public SprintController(SprintRepository sprintRepository){
-        this.sprintRepository = sprintRepository;
+    public SprintController(SprintService sprintService){
+        this.sprintService = sprintService;
     }
 
     @GetMapping("/sprints")
     public ResponseEntity getAllSprints(){
-        Iterable<Sprint> allSprints = sprintRepository.findAll();
+        Iterable<Sprint> allSprints = sprintService.findAll();
 
         return allSprints.iterator().hasNext() ?
                 ResponseEntity.ok(allSprints)
@@ -35,7 +35,7 @@ public class SprintController {
 
     @GetMapping("/sprint/{id}")
     public ResponseEntity getSprintById(@PathVariable("id") String id){
-        Optional<Sprint> sprintById = sprintRepository.findById(Long.valueOf(id));
+        Optional<Sprint> sprintById = sprintService.findById(Long.valueOf(id));
 
         return sprintById.isPresent() ?
                 ResponseEntity.ok(sprintById.get())

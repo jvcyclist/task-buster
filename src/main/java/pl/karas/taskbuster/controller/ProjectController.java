@@ -1,4 +1,4 @@
-package pl.karas.taskbuster.controllers;
+package pl.karas.taskbuster.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.karas.taskbuster.entities.Project;
-import pl.karas.taskbuster.repositories.ProjectRepository;
+import pl.karas.taskbuster.model.entities.Project;
+import pl.karas.taskbuster.repository.ProjectRepository;
 
 import java.util.Optional;
 

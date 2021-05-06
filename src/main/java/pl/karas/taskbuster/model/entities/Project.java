@@ -1,4 +1,4 @@
-package pl.karas.taskbuster.entities;
+package pl.karas.taskbuster.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

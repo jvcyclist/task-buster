@@ -1,8 +1,8 @@
-package pl.karas.taskbuster.repositories;
+package pl.karas.taskbuster.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-import pl.karas.taskbuster.entities.Sprint;
+import pl.karas.taskbuster.model.entities.Sprint;
 
 import java.util.Optional;
 
@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface SprintRepository extends CrudRepository<Sprint, Long> {
     
     public Iterable<Sprint> findAll();
-    public Optional<Sprint> findAllById(Long id);
+    public Optional<Sprint> findById(Long id);
 }

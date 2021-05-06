@@ -1,8 +1,8 @@
-package pl.karas.taskbuster.repositories;
+package pl.karas.taskbuster.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-import pl.karas.taskbuster.entities.Project;
+import pl.karas.taskbuster.model.entities.Project;
 
 import java.util.Optional;
 
