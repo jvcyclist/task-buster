@@ -1,6 +1,8 @@
 package pl.karas.taskbuster.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,5 +24,10 @@ public class Sprint {
     private Date startDate;
     private Date endDate;
     private Integer storyPoints;
+
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "sprint_id")
+    private Set<Task> taskList;
 
 }

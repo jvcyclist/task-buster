@@ -50,46 +50,38 @@ INSERT INTO task (name, description, sprint_id, story_points, progress) VALUES
     ('TASK1','TASK1 TEST',3,4,'QA'),
     ('TASK1','TASK1 TEST',4,4,'BACKLOG');
 
-DROP TABLE IF EXISTS user_authority;
-DROP TABLE IF EXISTS authority;
-CREATE TABLE authority (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(250) UNIQUE
-);
-INSERT INTO authority (name) VALUES
-    ('ADMIN'),
-    ('MANAGER'),
-    ('USER');
+DROP TABLE IF EXISTS users;
 
-
-DROP TABLE IF EXISTS user;
-CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(250),
-    password VARCHAR(250),
-    first_name VARCHAR(250),
-    last_name VARCHAR(250),
-    email VARCHAR(250),
-    activated BOOLEAN
+create table users(
+	username varchar_ignorecase(50) not null primary key,
+	password varchar_ignorecase(250) not null,
+	enabled boolean not null
 );
 
-INSERT INTO user(login, password, first_name, last_name, email, activated) VALUES
-    ('pkaras','pkaras123','Patryk','Karas','patryk1karas@gmail.com',false),
-    ('tnowacki','tnowak2222','Tomasz','Nowacki','tnowacki@gmail.com',false),
-    ('admin','admin123','Admin','Adminowski','admin123@gmail.com',false);
+INSERT INTO users(username, password, enabled) VALUES
+    ('pkaras','$2y$12$Y.bzq8y2.1LY6B9zfNTGnuHYyPENJoNdz9AOtOV2/gqkbRNXLXiJ.',true),
+    ('tnowacki','tnowak2222',false),
+    ('admin','$2y$12$KRer.35tiPeM6dkQ9H0TrOc.PH/FOuVVtbvh4rnqB.GbBGCx0bn.i',true);
 
-DROP TABLE IF EXISTS user_authority;
-CREATE TABLE user_authority (
-    user_id INT,
-    authority_name VARCHAR(250),
+DROP TABLE IF EXISTS authorities;
 
-    FOREIGN KEY (user_id) REFERENCES user(id),
-    FOREIGN KEY (authority_name) REFERENCES authority(name)
+create table authorities (
+    id integer not null,
+	username varchar_ignorecase(50) not null,
+	authority varchar_ignorecase(50) not null,
+	constraint fk_authorities_users foreign key(username) references users(username)
 );
 
-INSERT INTO user_authority (user_id, authority_name) VALUES
-    (1,'ADMIN'),
-    (1,'MANAGER'),
-    (2,'USER'),
-    (1,'MANAGER');
+INSERT INTO authorities (id, username, authority) VALUES
+ (1, 'pkaras','ROLE_USER'),
+ (2, 'admin','ROLE_ADMIN'),
+ (3, 'tnowacki','ROLE_USER');
+
+
+
+
+create unique index ix_auth_username on authorities (username,authority);
+
+
+
 
