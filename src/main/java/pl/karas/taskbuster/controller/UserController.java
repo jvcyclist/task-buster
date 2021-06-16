@@ -2,10 +2,7 @@ package pl.karas.taskbuster.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.karas.taskbuster.model.entities.User;
 import pl.karas.taskbuster.service.UserService;
 import pl.karas.taskbuster.service.UserServiceImpl;
@@ -44,6 +41,5 @@ public class UserController {
                 .body("There is no Users");
     }
 
-
-
+    
 }

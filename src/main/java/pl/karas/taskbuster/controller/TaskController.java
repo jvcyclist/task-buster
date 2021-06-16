@@ -9,7 +9,7 @@ import pl.karas.taskbuster.service.SprintService;
 import pl.karas.taskbuster.service.TaskService;
 
 import java.util.Optional;
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/api")
 public class TaskController {
@@ -30,7 +30,7 @@ public class TaskController {
                 : ResponseEntity.badRequest().body("Not found tasks");
     }
 
-    @GetMapping("/task/{id}")
+    @GetMapping("/tasks/{id}")
     public ResponseEntity getTaskById(@PathVariable("id") String id){
         Optional<Task> taskById = taskService.findById(Long.valueOf(id));
 
@@ -40,12 +40,14 @@ public class TaskController {
                 .body("Task with given id not found");
     }
 
-    @PostMapping("/task/{id}")
-    public void updateTask(){
-
-
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity updateTask(@PathVariable("id") String id, @RequestBody Task task){
+        Optional<Task> taskById = taskService.findById(Long.valueOf(id));
+        if(taskById.isPresent()){
+            this.taskService.saveTask(task);
+            return ResponseEntity.accepted().build();
+        }
+        else return ResponseEntity.notFound().build();
     }
-
-
 
 }

@@ -9,5 +9,5 @@ public interface TaskService {
 
     public Iterable<Task> findAll();
     public Optional<Task> findById(Long id);
-
+    public Task saveTask(Task task);
 }

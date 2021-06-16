@@ -11,20 +11,18 @@ import java.util.*;
 
 @Entity(name = "users")
 @Data
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force=true)
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private final String username;
-    private final String password;
-    private final boolean enabled;
-    @OneToMany(mappedBy = "username")
-    private final Set<Authority> authorities;
+    private String username;
+    private String password;
+    private boolean enabled;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    private Set<Authority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -32,9 +30,7 @@ public class User implements UserDetails {
         for(Authority authority : authorities){
             simpleGrantedAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
         }
-        return
-                //Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-                simpleGrantedAuthorities;
+        return simpleGrantedAuthorities;
     }
 
     @Override
@@ -64,6 +60,19 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
+
+/*    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+    }*/
+
 }

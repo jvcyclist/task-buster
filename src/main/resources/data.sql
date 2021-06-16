@@ -61,7 +61,7 @@ create table users(
 INSERT INTO users(username, password, enabled) VALUES
     ('pkaras','$2y$12$Y.bzq8y2.1LY6B9zfNTGnuHYyPENJoNdz9AOtOV2/gqkbRNXLXiJ.',true),
     ('tnowacki','tnowak2222',false),
-    ('admin','$2y$12$KRer.35tiPeM6dkQ9H0TrOc.PH/FOuVVtbvh4rnqB.GbBGCx0bn.i',true);
+    ('admin','$2y$12$ohgSlGpcPTLwxC2u1LRKFuzLo3YF0Aobdedv3UXGOBDDLVDKLXuzO',true);
 
 DROP TABLE IF EXISTS authorities;
 
@@ -73,9 +73,9 @@ create table authorities (
 );
 
 INSERT INTO authorities (id, username, authority) VALUES
- (1, 'pkaras','ROLE_USER'),
- (2, 'admin','ROLE_ADMIN'),
- (3, 'tnowacki','ROLE_USER');
+ (500, 'pkaras','ROLE_USER'),
+ (501, 'admin','ROLE_ADMIN'),
+ (502, 'tnowacki','ROLE_USER');
 
 
 

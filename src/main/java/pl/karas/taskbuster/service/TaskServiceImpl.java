@@ -26,4 +26,10 @@ public class TaskServiceImpl implements TaskService {
     public Optional<Task> findById(Long id) {
         return this.taskRepository.findById(id);
     }
+
+    @Override
+    public Task saveTask(Task task) {
+        return this.taskRepository.save(task);
+    }
+
 }
