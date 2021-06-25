@@ -50,4 +50,16 @@ public class TaskController {
         else return ResponseEntity.notFound().build();
     }
 
+    @PatchMapping("/tasks/{id}")
+    public ResponseEntity updateTaskStatus(@PathVariable("id") String id, @RequestBody Task task){
+
+        Optional<Task> taskById = taskService.findById(Long.valueOf(id));
+        if(taskById.isPresent()){
+            taskById.get().setProgress(task.getProgress());
+            this.taskService.saveTask(taskById.get());
+            return ResponseEntity.accepted().build();
+        }
+        else return ResponseEntity.notFound().build();
+    }
+
 }
