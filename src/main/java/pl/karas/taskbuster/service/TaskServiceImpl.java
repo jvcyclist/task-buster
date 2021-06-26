@@ -2,11 +2,13 @@ package pl.karas.taskbuster.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.karas.taskbuster.model.entities.Task;
 import pl.karas.taskbuster.repository.TaskRepository;
 
 import java.util.Optional;
 
+@Transactional
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -32,4 +34,6 @@ public class TaskServiceImpl implements TaskService {
         return this.taskRepository.save(task);
     }
 
+    @Override
+    public  Optional<Task> deleteTaskById(Long id) { return this.taskRepository.deleteById(id);}
 }

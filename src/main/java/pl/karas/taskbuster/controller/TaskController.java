@@ -21,6 +21,13 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @PostMapping("/tasks")
+    public ResponseEntity<Task> addTask(@RequestBody Task task){
+        this.taskService.saveTask(task);
+        return ResponseEntity.ok(task);
+    }
+
+
     @GetMapping("/tasks")
     public ResponseEntity getAllTasks(){
         Iterable<Task> allTasks = taskService.findAll();
@@ -57,6 +64,17 @@ public class TaskController {
         if(taskById.isPresent()){
             taskById.get().setProgress(task.getProgress());
             this.taskService.saveTask(taskById.get());
+            return ResponseEntity.accepted().build();
+        }
+        else return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public ResponseEntity deleteTask(@PathVariable("id") String id){
+
+        Optional<Task> taskById = taskService.findById(Long.valueOf(id));
+        if(taskById.isPresent()){
+            this.taskService.deleteTaskById(Long.valueOf(id));
             return ResponseEntity.accepted().build();
         }
         else return ResponseEntity.notFound().build();

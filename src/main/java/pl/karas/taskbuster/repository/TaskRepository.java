@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface TaskRepository extends CrudRepository<Task, Integer> {
     public Iterable<Task> findAll();
     public Optional<Task> findById(Long id);
+    public Optional<Task> deleteById(Long id);
 }
