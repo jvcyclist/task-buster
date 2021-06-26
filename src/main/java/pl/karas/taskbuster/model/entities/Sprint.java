@@ -23,7 +23,7 @@ public class Sprint {
     private Long id;
     private Date startDate;
     private Date endDate;
-    private Integer storyPoints;
+    private Integer plannedStoryPoints;
 
 
     @JsonManagedReference

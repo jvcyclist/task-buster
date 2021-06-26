@@ -36,4 +36,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public  Optional<Task> deleteTaskById(Long id) { return this.taskRepository.deleteById(id);}
+
+    @Override
+    public Iterable<Task> findAllBySprintId(Integer sprintId) {
+        return this.taskRepository.findAllBySprintId(sprintId);
+    }
 }

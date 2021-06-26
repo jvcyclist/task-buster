@@ -3,8 +3,10 @@ package pl.karas.taskbuster.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.karas.taskbuster.model.entities.Sprint;
+import pl.karas.taskbuster.model.entities.Task;
 import pl.karas.taskbuster.repository.SprintRepository;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -26,4 +28,10 @@ public class SprintServiceImpl implements SprintService {
     public Optional<Sprint> findById(Long id) {
         return this.sprintRepository.findById(id);
     }
+
+    @Override
+    public Optional<Sprint> findByCurrentDate(Date currentDate) {
+        return this.sprintRepository.findByCurrentDate(currentDate);
+    }
+
 }

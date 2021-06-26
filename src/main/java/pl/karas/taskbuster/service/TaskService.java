@@ -11,4 +11,5 @@ public interface TaskService {
     public Optional<Task> findById(Long id);
     public Task saveTask(Task task);
     public Optional<Task> deleteTaskById(Long id);
+    public Iterable<Task> findAllBySprintId(Integer sprintId);
 }

@@ -14,15 +14,16 @@ DROP TABLE IF EXISTS task;
 DROP TABLE IF EXISTS sprint;
 CREATE TABLE sprint (
     id INT AUTO_INCREMENT  PRIMARY KEY,
-    end_date TIMESTAMP NOT NULL,
     start_date TIMESTAMP NOT NULL,
-    story_points INT NOT NULL
+    end_date TIMESTAMP NOT NULL,
+    planned_story_points INT NOT NULL
 );
 
 
-INSERT INTO sprint (end_date, start_date, story_points ) VALUES
-    ('2021-04-05 20:26:02','2021-04-05 20:26:02',4),
-    ('2021-04-05 20:26:02','2021-04-05 20:26:02',4),
+INSERT INTO sprint (start_date, end_date, planned_story_points ) VALUES
+    ('2021-03-01 20:26:02','2021-03-12 20:26:02',4),
+    ('2021-03-15 20:26:02','2021-03-26 20:26:02',4),
+    ('2021-06-22 20:26:02','2021-06-30 20:26:02',4),
     ('2021-04-05 20:26:02','2021-04-05 20:26:02',4),
     ('2021-04-05 20:26:02','2021-04-05 20:26:02',4);
 

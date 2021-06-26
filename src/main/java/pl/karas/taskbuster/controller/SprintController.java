@@ -3,16 +3,15 @@ package pl.karas.taskbuster.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.karas.taskbuster.model.entities.Sprint;
 import pl.karas.taskbuster.repository.SprintRepository;
 import pl.karas.taskbuster.service.SprintService;
 
+import java.util.Date;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class SprintController {
@@ -33,7 +32,21 @@ public class SprintController {
                 : ResponseEntity.badRequest().body("Not found sprints");
     }
 
-    @GetMapping("/sprint/{id}")
+    @GetMapping("/sprints/current")
+    public ResponseEntity getCurrentSprint(){
+        Date currentDate = new Date(System.currentTimeMillis());
+        String currentd = currentDate.toString();
+
+        Optional<Sprint> sprintByCurrentDate = sprintService.findByCurrentDate(currentDate);
+
+
+
+        return sprintByCurrentDate.isPresent() ?
+                ResponseEntity.ok(sprintByCurrentDate)
+                : ResponseEntity.badRequest().body("Not found sprints");
+    }
+
+    @GetMapping("/sprints/{id}")
     public ResponseEntity getSprintById(@PathVariable("id") String id){
         Optional<Sprint> sprintById = sprintService.findById(Long.valueOf(id));
 
