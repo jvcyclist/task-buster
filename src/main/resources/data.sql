@@ -89,3 +89,17 @@ INSERT INTO authorities (id, username, authority) VALUES
  (502, 'kar_patryk8@wp.pl','ROLE_USER');
 
 create unique index ix_auth_username on authorities (username,authority);
+
+DROP TABLE IF EXISTS user_project;
+
+CREATE TABLE user_project (
+    user_id integer not null,
+    project_id integer not null,
+    constraint fk_user_project foreign key (user_id) references users(id),
+    constraint fk_project_user foreign key (project_id) references project(id)
+);
+
+INSERT INTO user_project (user_id, project_id) VALUES
+(1, 1),
+(1, 2),
+(1, 3);

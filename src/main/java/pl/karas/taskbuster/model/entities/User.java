@@ -25,6 +25,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
     private Set<Authority> authorities;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> simpleGrantedAuthorities = new HashSet<>();

@@ -38,7 +38,7 @@ public class DevSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
         http.csrf().disable().cors().and().authorizeRequests()
-                .antMatchers( "/oauth2/**", "/login**" ).permitAll()
+                .antMatchers( "/oauth2/**", "/login**", "/h2-console/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()

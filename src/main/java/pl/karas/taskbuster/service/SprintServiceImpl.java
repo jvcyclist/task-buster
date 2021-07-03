@@ -35,8 +35,8 @@ public class SprintServiceImpl implements SprintService {
     }
 
     @Override
-    public Iterable<Sprint> findAllByDateBetween(Date startDate, Date endDate) {
-        return this.sprintRepository.findAllByStartDateBetweenAnOrEndDateBetween(startDate, endDate);
+    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Long projectId) {
+        return this.findAllSprintBetweenDatesAndByProjectId(startDate, endDate, projectId);
     }
 
 }

@@ -34,10 +34,8 @@ class TaskBusterApplicationTests {
 
 
         Iterable<Sprint> sprintsByDateBetween;
-        sprintsByDateBetween = this.sprintService.findAllByDateBetween(startDate, endDate);
-
-
-
+        sprintsByDateBetween = this.sprintService.findAllSprintBetweenDatesAndByProjectId(startDate,endDate, new Long(2));
+        sprintsByDateBetween.forEach(System.out::println);
 
 
     }

@@ -38,8 +38,6 @@ public class SprintController {
         Date currentDate = new Date(System.currentTimeMillis());
         Optional<Sprint> sprintByCurrentDate = sprintService.findByCurrentDate(currentDate);
 
-
-
         return sprintByCurrentDate.isPresent() ?
                 ResponseEntity.ok(sprintByCurrentDate)
                 : ResponseEntity.badRequest().body("Not found sprints");
@@ -54,6 +52,4 @@ public class SprintController {
                 : ResponseEntity.badRequest()
                 .body("Sprint with given id not found");
     }
-
-
 }
