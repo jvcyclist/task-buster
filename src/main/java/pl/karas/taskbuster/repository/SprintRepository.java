@@ -20,6 +20,9 @@ public interface SprintRepository extends CrudRepository<Sprint, Long> {
     public Optional<Sprint> findByCurrentDate(Date currentDate);
 
     @Query("SELECT s from Sprint s where s.startDate between ?1 AND ?2 AND s.project_id = ?3 OR s.endDate between ?1 AND ?2 and s.project_id = ?3")
-    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Long projectId);
+    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Integer projectId);
+
+    @Query("SELECT s from Sprint s where s.project_id = ?1")
+    public Iterable<Sprint> findAllByProject_id(Integer projectId);
 
 }

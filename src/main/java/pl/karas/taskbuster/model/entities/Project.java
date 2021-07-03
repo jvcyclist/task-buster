@@ -23,6 +23,10 @@ public class Project {
     @OneToMany(mappedBy = "project_id")
     private List<Sprint> sprintList;
 
+    @ManyToOne
+    @JoinColumn(name = "user_admin_id")
+    User adminUser;
+
 
     //User administrator
     //List<User> participant

@@ -50,6 +50,11 @@ public class TaskController {
                     : ResponseEntity.badRequest().body("Not found tasks");
         }
         else{
+            if(sprintId.equals("undefined")){
+                return ResponseEntity.badRequest().body("Not found tasks with id = undefined");
+            }
+
+
             Iterable<Task> allTasksBySprintId = taskService.findAllBySprintId(Integer.valueOf(sprintId));
 
             return allTasksBySprintId.iterator().hasNext() ?

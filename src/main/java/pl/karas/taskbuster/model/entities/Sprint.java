@@ -19,14 +19,14 @@ import java.util.Set;
 public class Sprint {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date startDate;
     private Date endDate;
     private Integer plannedStoryPoints;
     private Integer project_id;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(mappedBy = "sprint_id")
     private Set<Task> taskList;
 

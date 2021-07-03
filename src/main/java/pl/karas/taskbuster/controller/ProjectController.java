@@ -1,5 +1,6 @@
 package pl.karas.taskbuster.controller;
 
+import antlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,21 @@ public class ProjectController {
     }
 
     @GetMapping(value = "/projects", produces = "application/json")
-    public ResponseEntity getAllProjects(){
-        Iterable<Project> allProjects = this.projectService.findAll();
+    public ResponseEntity getAllProjects(@ModelAttribute(value="admin_username") String adminUserName){
 
-        return allProjects.iterator().hasNext() ?
-                ResponseEntity.ok(allProjects)
-                : ResponseEntity.badRequest().body("Not found projects");
+        if(!adminUserName.isEmpty()){
+            Iterable<Project> allProjectsByUsername = this.projectService.findProjectByAdminUserName(adminUserName);
+            return allProjectsByUsername.iterator().hasNext() ?
+                    ResponseEntity.ok(allProjectsByUsername)
+                    : ResponseEntity.badRequest().body("Not found projects for given username");
+        }
+        else{
+            Iterable<Project> allProjects = this.projectService.findAll();
+
+            return allProjects.iterator().hasNext() ?
+                    ResponseEntity.ok(allProjects)
+                    : ResponseEntity.badRequest().body("Not found projects");
+        }
     }
 
     @GetMapping(value = "/projects/{id}", produces = "application/json")
@@ -66,6 +76,5 @@ public class ProjectController {
         }
         else return ResponseEntity.notFound().build();
     }
-
 
 }

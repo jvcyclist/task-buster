@@ -25,12 +25,23 @@ public class SprintController {
     }
 
     @GetMapping("/sprints")
-    public ResponseEntity getAllSprints(){
-        Iterable<Sprint> allSprints = sprintService.findAll();
+    public ResponseEntity getAllSprints(@ModelAttribute(name = "projectId") String projectId){
 
-        return allSprints.iterator().hasNext() ?
-                ResponseEntity.ok(allSprints)
-                : ResponseEntity.badRequest().body("Not found sprints");
+        if(!projectId.isEmpty()){
+
+            Iterable<Sprint> allSprintsByProjectId = sprintService.findAllByProjectId(Integer.valueOf(projectId));
+
+            return allSprintsByProjectId.iterator().hasNext() ?
+                    ResponseEntity.ok(allSprintsByProjectId)
+                    : ResponseEntity.badRequest().body("Not found sprints for given Project Id");
+        }
+        else{
+            Iterable<Sprint> allSprints = sprintService.findAll();
+
+            return allSprints.iterator().hasNext() ?
+                    ResponseEntity.ok(allSprints)
+                    : ResponseEntity.badRequest().body("Not found sprints");
+        }
     }
 
     @GetMapping("/sprints/current")
@@ -52,4 +63,21 @@ public class SprintController {
                 : ResponseEntity.badRequest()
                 .body("Sprint with given id not found");
     }
+
+    @PostMapping("/sprints")
+    public ResponseEntity<Sprint> addSprint(@RequestBody Sprint sprint){
+       Iterable<Sprint> sprints =  this.sprintService.findAllSprintBetweenDatesAndByProjectId(
+               sprint.getStartDate(),
+                sprint.getEndDate(),
+                sprint.getProject_id());
+
+       if(sprints.iterator().hasNext()){
+           return ResponseEntity.badRequest().build();
+       }
+        else{
+           this.sprintService.saveSprint(sprint);
+           return ResponseEntity.ok(sprint);
+       }
+    }
+
 }

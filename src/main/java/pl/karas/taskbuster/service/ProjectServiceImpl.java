@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.karas.taskbuster.model.entities.Project;
 import pl.karas.taskbuster.model.entities.Task;
+import pl.karas.taskbuster.model.entities.User;
 import pl.karas.taskbuster.repository.ProjectRepository;
+import pl.karas.taskbuster.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -36,5 +38,10 @@ public class ProjectServiceImpl implements ProjectService{
     @Override
     public void deleteTaskById(Long id) {
          this.projectRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<Project> findProjectByAdminUserName(String username) {
+       return this.projectRepository.findByAdminUser_Username(username);
     }
 }

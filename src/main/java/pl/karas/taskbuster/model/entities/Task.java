@@ -22,6 +22,7 @@ public class Task {
     private String description;
 
     private Integer sprint_id;
+
     private Integer storyPoints;
     //@Column(columnDefinition = "enum('BACKLOG', 'TODO', 'IN_PROGRESS', 'QA', 'DONE')")
     @Enumerated(EnumType.STRING)

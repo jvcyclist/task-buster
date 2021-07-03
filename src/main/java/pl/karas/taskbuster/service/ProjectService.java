@@ -11,4 +11,5 @@ public interface ProjectService {
     public Optional<Project> findById(Long id);
     public Project saveProject(Project project);
     public void deleteTaskById(Long valueOf);
+    public Iterable<Project> findProjectByAdminUserName(String username);
 }

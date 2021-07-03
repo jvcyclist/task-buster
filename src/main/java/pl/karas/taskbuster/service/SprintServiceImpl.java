@@ -35,8 +35,18 @@ public class SprintServiceImpl implements SprintService {
     }
 
     @Override
-    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Long projectId) {
-        return this.findAllSprintBetweenDatesAndByProjectId(startDate, endDate, projectId);
+    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Integer projectId) {
+        return this.sprintRepository.findAllSprintBetweenDatesAndByProjectId(startDate, endDate, projectId);
+    }
+
+    @Override
+    public Iterable<Sprint> findAllByProjectId(Integer projectId) {
+        return this.sprintRepository.findAllByProject_id(projectId);
+    }
+
+    @Override
+    public Sprint saveSprint(Sprint sprint) {
+        return this.sprintRepository.save(sprint);
     }
 
 }

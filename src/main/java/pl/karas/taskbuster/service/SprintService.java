@@ -11,7 +11,8 @@ public interface SprintService {
     public Iterable<Sprint> findAll();
     public Optional<Sprint> findById(Long id);
     public Optional<Sprint> findByCurrentDate(Date currentDate);
-    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Long projectId);
+    public Iterable<Sprint> findAllSprintBetweenDatesAndByProjectId(Date startDate, Date endDate, Integer projectId);
+    public Iterable<Sprint> findAllByProjectId(Integer projectId);
 
-
+    public Sprint saveSprint(Sprint sprint);
 }
