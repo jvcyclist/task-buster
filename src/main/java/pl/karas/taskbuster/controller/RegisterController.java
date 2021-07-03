@@ -19,15 +19,16 @@ public class RegisterController {
 
     UserService userService;
     AuthorityService authorityService;
-    PasswordEncoder passwordEncoder;
+  //  PasswordEncoder passwordEncoder;
 
     @Autowired
     public RegisterController(UserService userService,
-                              AuthorityService authorityService,
-                              PasswordEncoder passwordEncoder) {
+                              AuthorityService authorityService
+                              //PasswordEncoder passwordEncoder
+                              ) {
         this.userService = userService;
         this.authorityService = authorityService;
-        this.passwordEncoder = passwordEncoder;
+      //  this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping(value = "/register")
@@ -35,7 +36,7 @@ public class RegisterController {
             if(userService.findUserByUsername(user.getUsername()).isEmpty()){
                 User userToAdd = new User();
                 userToAdd.setUsername(user.getUsername());
-                userToAdd.setPassword(passwordEncoder.encode(user.getPassword()));
+            //    userToAdd.setPassword(passwordEncoder.encode(user.getPassword()));
                 userToAdd.setEnabled(true);
 
                 Authority authorityToAdd = new Authority();

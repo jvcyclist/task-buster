@@ -24,7 +24,7 @@ public class Sprint {
     private Date startDate;
     private Date endDate;
     private Integer plannedStoryPoints;
-
+    private Integer project_id;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "sprint_id")

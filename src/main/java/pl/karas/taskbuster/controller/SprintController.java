@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.karas.taskbuster.model.entities.Sprint;
+import pl.karas.taskbuster.model.entities.Task;
 import pl.karas.taskbuster.repository.SprintRepository;
 import pl.karas.taskbuster.service.SprintService;
 
@@ -35,8 +36,6 @@ public class SprintController {
     @GetMapping("/sprints/current")
     public ResponseEntity getCurrentSprint(){
         Date currentDate = new Date(System.currentTimeMillis());
-        String currentd = currentDate.toString();
-
         Optional<Sprint> sprintByCurrentDate = sprintService.findByCurrentDate(currentDate);
 
 
@@ -55,5 +54,6 @@ public class SprintController {
                 : ResponseEntity.badRequest()
                 .body("Sprint with given id not found");
     }
+
 
 }

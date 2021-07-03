@@ -17,6 +17,7 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     @Id
+    private Long id;
     private String username;
     private String password;
     private boolean enabled;
@@ -62,17 +63,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-/*    public void setPassword(String password){
-        this.password = password;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
-    }*/
 
 }

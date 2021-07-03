@@ -34,4 +34,9 @@ public class SprintServiceImpl implements SprintService {
         return this.sprintRepository.findByCurrentDate(currentDate);
     }
 
+    @Override
+    public Iterable<Sprint> findAllByDateBetween(Date startDate, Date endDate) {
+        return this.sprintRepository.findAllByStartDateBetweenAnOrEndDateBetween(startDate, endDate);
+    }
+
 }

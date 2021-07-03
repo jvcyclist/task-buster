@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.karas.taskbuster.model.entities.Sprint;
 
 
+import javax.swing.*;
 import java.util.Date;
 import java.util.Optional;
 
@@ -17,4 +18,6 @@ public interface SprintRepository extends CrudRepository<Sprint, Long> {
 
     @Query("SELECT s from Sprint s where s.startDate <= ?1 AND s.endDate >= ?1")
     public Optional<Sprint> findByCurrentDate(Date currentDate);
+
+    public Iterable<Sprint> findAllByStartDateBetweenAnOrEndDateBetween(Date startDate, Date endDate);
 }

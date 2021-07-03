@@ -16,16 +16,21 @@ CREATE TABLE sprint (
     id INT AUTO_INCREMENT  PRIMARY KEY,
     start_date TIMESTAMP NOT NULL,
     end_date TIMESTAMP NOT NULL,
-    planned_story_points INT NOT NULL
+    planned_story_points INT NOT NULL,
+    project_id INT,
+    FOREIGN KEY (project_id) REFERENCES project(id)
 );
 
 
-INSERT INTO sprint (start_date, end_date, planned_story_points ) VALUES
-    ('2021-03-01 20:26:02','2021-03-12 20:26:02',4),
-    ('2021-03-15 20:26:02','2021-03-26 20:26:02',4),
-    ('2021-06-22 20:26:02','2021-06-30 20:26:02',4),
-    ('2021-04-05 20:26:02','2021-04-05 20:26:02',4),
-    ('2021-04-05 20:26:02','2021-04-05 20:26:02',4);
+INSERT INTO sprint (start_date, end_date, planned_story_points, project_id ) VALUES
+    ('2021-03-01 20:26:02','2021-03-12 20:26:02',4,1),
+    ('2021-03-15 20:26:02','2021-03-26 20:26:02',4,2),
+    ('2021-06-22 20:26:02','2021-06-30 20:26:02',4,3),
+     ('2021-06-22 20:26:02','2021-07-03 20:26:02',4,1),
+    ('2021-07-05 20:26:02','2021-07-16 20:26:02',4,2),
+    ('2021-07-19 20:26:02','2021-07-30 20:26:02',4,3),
+    ('2021-04-05 20:26:02','2021-04-05 20:26:02',4,1);
+
 
 
 CREATE TABLE task (
@@ -49,20 +54,25 @@ INSERT INTO task (name, description, sprint_id, story_points, progress) VALUES
     ('TASK1','TASK1 TEST',3,4,'IN_PROGRESS'),
     ('TASK1','TASK1 TEST',3,4,'IN_PROGRESS'),
     ('TASK1','TASK1 TEST',3,4,'QA'),
-    ('TASK1','TASK1 TEST',4,4,'BACKLOG');
+
+    ('TASK1','TASK1 TEST',4,4,'BACKLOG'),
+    ('TASK2','TASK1 TEST',4,4,'QA'),
+    ('TASK3','TASK1 TEST',4,4,'TODO'),
+    ('TASK4','TASK1 TEST',4,4,'BACKLOG'),
+    ('TASK5','TASK1 TEST',4,4,'IN_PROGRESS'),
+    ('TASK6','TASK1 TEST',4,4,'BACKLOG');
 
 DROP TABLE IF EXISTS users;
 
 create table users(
-	username varchar_ignorecase(50) not null primary key,
-	password varchar_ignorecase(250) not null,
-	enabled boolean not null
+    id integer not null primary key,
+	username varchar_ignorecase(50) not null
 );
 
-INSERT INTO users(username, password, enabled) VALUES
-    ('pkaras','$2y$12$Y.bzq8y2.1LY6B9zfNTGnuHYyPENJoNdz9AOtOV2/gqkbRNXLXiJ.',true),
-    ('tnowacki','tnowak2222',false),
-    ('admin','$2y$12$ohgSlGpcPTLwxC2u1LRKFuzLo3YF0Aobdedv3UXGOBDDLVDKLXuzO',true);
+INSERT INTO users(id, username) VALUES
+    (1, 'patryk1karas@gmail.com'),
+    (2, 'kolarz9000@gmail.com'),
+    (3, 'kar_patryk8@wp.pl');
 
 DROP TABLE IF EXISTS authorities;
 
@@ -74,15 +84,8 @@ create table authorities (
 );
 
 INSERT INTO authorities (id, username, authority) VALUES
- (500, 'pkaras','ROLE_USER'),
- (501, 'admin','ROLE_ADMIN'),
- (502, 'tnowacki','ROLE_USER');
-
-
-
+ (500, 'patryk1karas@gmail.com','ROLE_USER'),
+ (501, 'kar_patryk8@wp.pl','ROLE_ADMIN'),
+ (502, 'kar_patryk8@wp.pl','ROLE_USER');
 
 create unique index ix_auth_username on authorities (username,authority);
-
-
-
-
