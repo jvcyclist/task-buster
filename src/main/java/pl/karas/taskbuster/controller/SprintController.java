@@ -65,14 +65,14 @@ public class SprintController {
     }
 
     @PostMapping("/sprints")
-    public ResponseEntity<Sprint> addSprint(@RequestBody Sprint sprint){
+    public ResponseEntity addSprint(@RequestBody Sprint sprint){
        Iterable<Sprint> sprints =  this.sprintService.findAllSprintBetweenDatesAndByProjectId(
                sprint.getStartDate(),
                 sprint.getEndDate(),
                 sprint.getProject_id());
 
        if(sprints.iterator().hasNext()){
-           return ResponseEntity.badRequest().build();
+           return ResponseEntity.badRequest().body("Cannot create Sprint for Project ID: "  + sprint.getProject_id() +" . The dates are overlap");
        }
         else{
            this.sprintService.saveSprint(sprint);

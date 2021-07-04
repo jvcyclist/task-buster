@@ -23,4 +23,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
     private Set<Authority> authorities;
 
+
+
+
+
 }

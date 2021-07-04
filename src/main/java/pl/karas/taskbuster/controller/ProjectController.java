@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.karas.taskbuster.model.entities.Project;
 import pl.karas.taskbuster.model.entities.Task;
+import pl.karas.taskbuster.model.entities.User;
 import pl.karas.taskbuster.repository.ProjectRepository;
 import pl.karas.taskbuster.service.ProjectService;
+import pl.karas.taskbuster.service.UserService;
 
 import java.util.Optional;
 @CrossOrigin()
@@ -16,10 +18,12 @@ import java.util.Optional;
 public class ProjectController {
 
     private ProjectService projectService;
+    private UserService userService;
 
     @Autowired
-    public ProjectController(ProjectService projectService){
+    public ProjectController(ProjectService projectService, UserService userService){
         this.projectService = projectService;
+        this.userService = userService;
     }
 
     @GetMapping(value = "/projects", produces = "application/json")
@@ -52,7 +56,14 @@ public class ProjectController {
     }
 
     @PostMapping(value = "/projects", produces = "application/json")
-    public ResponseEntity<Project> addProject(@RequestBody Project project){
+    public ResponseEntity addProject(@RequestBody Project project){
+       Optional<User> user = this.userService.findUserByUsername(project.getAdminUser().getUsername());
+       if(user.isPresent()){
+           project.setAdminUser(user.get());
+       }
+       else {
+           project.setAdminUser(userService.saveUser(project.getAdminUser()));
+       }
         return ResponseEntity.ok(this.projectService.saveProject(project));
     }
 
