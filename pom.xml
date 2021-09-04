@@ -12,7 +12,7 @@
     <artifactId>task-buster</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>task-buster</name>
-    <description>Application for mannaging projects</description>
+    <description>Application for managing projects</description>
     <properties>
         <java.version>11</java.version>
     </properties>

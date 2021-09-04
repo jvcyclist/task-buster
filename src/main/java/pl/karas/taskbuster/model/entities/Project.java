@@ -29,7 +29,7 @@ public class Project {
     User adminUser;
 
 
-    //User administrator
-    //List<User> participant
+//User administrator
+//List<User> participant
 
 }

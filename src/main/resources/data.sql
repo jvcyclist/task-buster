@@ -59,11 +59,6 @@ INSERT INTO authorities (id, username, authority) VALUES
 
 create unique index ix_auth_username on authorities (username,authority);
 
-
-
-
-
-
 CREATE TABLE sprint (
     id INT AUTO_INCREMENT  PRIMARY KEY,
     start_date TIMESTAMP NOT NULL,
@@ -123,97 +118,98 @@ CREATE TABLE task (
     description VARCHAR(250),
     sprint_id INT,
     story_points INT,
+    priority INT,
     progress ENUM('BACKLOG', 'TODO', 'IN_PROGRESS', 'QA', 'DONE'),
     FOREIGN KEY (sprint_id) REFERENCES sprint(id)
 );
 
-INSERT INTO task (name, description, sprint_id, story_points, progress) VALUES
-    ('TASK1','TASK1 TEST',1,3,'BACKLOG'),
-    ('TASK2','TASK2 TEST',2,3,'BACKLOG'),
-    ('TASK3','TASK3 TEST',3,3,'BACKLOG'),
+INSERT INTO task (name, description, sprint_id, story_points, priority, progress) VALUES
+    ('TASK1','TASK1 TEST',1,3,1,'BACKLOG'),
+    ('TASK2','TASK2 TEST',2,3,2,'BACKLOG'),
+    ('TASK3','TASK3 TEST',3,3,3,'BACKLOG'),
 
-    ('TASK1','TASK1 TEST',4,4,'TODO'),
-    ('TASK1','TASK1 TEST',5,4,'TODO'),
+    ('TASK1','TASK1 TEST',4,4,4,'TODO'),
+    ('TASK1','TASK1 TEST',5,4,1,'TODO'),
 
-    ('TASK1','TASK1 TEST',6,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',7,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',8,4,'QA'),
+    ('TASK1','TASK1 TEST',6,4,5,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',7,4,3,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',8,4,2,'QA'),
 
-    ('TASK1','TASK1 TEST',9,4,'BACKLOG'),
-    ('TASK2','TASK1 TEST',10,4,'QA'),
-    ('TASK3','TASK1 TEST',11,4,'TODO'),
-    ('TASK4','TASK1 TEST',12,4,'BACKLOG'),
-    ('TASK5','TASK1 TEST',13,4,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',9,4,1,'BACKLOG'),
+    ('TASK2','TASK1 TEST',10,4,3,'QA'),
+    ('TASK3','TASK1 TEST',11,4,4,'TODO'),
+    ('TASK4','TASK1 TEST',12,4,4,'BACKLOG'),
+    ('TASK5','TASK1 TEST',13,4,5,'IN_PROGRESS'),
 
- ('TASK1','TASK1 TEST',14,3,'BACKLOG'),
-    ('TASK2','TASK2 TEST',5,3,'BACKLOG'),
-    ('TASK3','TASK3 TEST',1,3,'BACKLOG'),
+ ('TASK1','TASK1 TEST',14,3,1,'BACKLOG'),
+    ('TASK2','TASK2 TEST',5,3,1,'BACKLOG'),
+    ('TASK3','TASK3 TEST',1,3,1,'BACKLOG'),
 
-    ('TASK1','TASK1 TEST',2,4,'TODO'),
-    ('TASK1','TASK1 TEST',3,4,'TODO'),
+    ('TASK1','TASK1 TEST',2,4,1,'TODO'),
+    ('TASK1','TASK1 TEST',3,4,1,'TODO'),
 
-    ('TASK1','TASK1 TEST',4,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',5,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',6,4,'QA'),
+    ('TASK1','TASK1 TEST',4,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',5,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',6,4,1,'QA'),
 
-    ('TASK1','TASK1 TEST',7,4,'BACKLOG'),
-    ('TASK2','TASK1 TEST',8,4,'QA'),
-    ('TASK3','TASK1 TEST',9,4,'TODO'),
-    ('TASK4','TASK1 TEST',10,4,'BACKLOG'),
-    ('TASK5','TASK1 TEST',11,4,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',7,4,1,'BACKLOG'),
+    ('TASK2','TASK1 TEST',8,4,1,'QA'),
+    ('TASK3','TASK1 TEST',9,4,1,'TODO'),
+    ('TASK4','TASK1 TEST',10,4,1,'BACKLOG'),
+    ('TASK5','TASK1 TEST',11,4,3,'IN_PROGRESS'),
 
-    ('TASK1','TASK1 TEST',1,3,'BACKLOG'),
-    ('TASK2','TASK2 TEST',2,3,'BACKLOG'),
-    ('TASK3','TASK3 TEST',3,3,'BACKLOG'),
+    ('TASK1','TASK1 TEST',1,3,4,'BACKLOG'),
+    ('TASK2','TASK2 TEST',2,3,1,'BACKLOG'),
+    ('TASK3','TASK3 TEST',3,3,1,'BACKLOG'),
 
-    ('TASK1','TASK1 TEST',4,4,'TODO'),
-    ('TASK1','TASK1 TEST',5,4,'TODO'),
+    ('TASK1','TASK1 TEST',4,4,1,'TODO'),
+    ('TASK1','TASK1 TEST',5,4,1,'TODO'),
 
-    ('TASK1','TASK1 TEST',7,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',8,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',7,4,'QA'),
+    ('TASK1','TASK1 TEST',7,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',8,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',7,4,1,'QA'),
 
-    ('TASK1','TASK1 TEST',1,4,'BACKLOG'),
-    ('TASK2','TASK1 TEST',4,4,'QA'),
-    ('TASK3','TASK1 TEST',5,4,'TODO'),
-    ('TASK4','TASK1 TEST',8,4,'BACKLOG'),
-    ('TASK5','TASK1 TEST',6,4,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',1,4,1,'BACKLOG'),
+    ('TASK2','TASK1 TEST',4,4,1,'QA'),
+    ('TASK3','TASK1 TEST',5,4,1,'TODO'),
+    ('TASK4','TASK1 TEST',8,4,1,'BACKLOG'),
+    ('TASK5','TASK1 TEST',6,4,1,'IN_PROGRESS'),
 
-    ('TASK1','TASK1 TEST',3,3,'BACKLOG'),
-    ('TASK2','TASK2 TEST',4,3,'BACKLOG'),
-    ('TASK3','TASK3 TEST',5,3,'BACKLOG'),
+    ('TASK1','TASK1 TEST',3,3,1,'BACKLOG'),
+    ('TASK2','TASK2 TEST',4,3,1,'BACKLOG'),
+    ('TASK3','TASK3 TEST',5,3,1,'BACKLOG'),
 
-    ('TASK1','TASK1 TEST',10,4,'TODO'),
-    ('TASK1','TASK1 TEST',11,4,'TODO'),
+    ('TASK1','TASK1 TEST',10,4,1,'TODO'),
+    ('TASK1','TASK1 TEST',11,4,1,'TODO'),
 
-    ('TASK1','TASK1 TEST',12,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',13,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',14,4,'QA'),
+    ('TASK1','TASK1 TEST',12,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',13,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',14,4,1,'QA'),
 
-    ('TASK1','TASK1 TEST',13,4,'BACKLOG'),
-    ('TASK2','TASK1 TEST',8,4,'QA'),
-    ('TASK3','TASK1 TEST',2,4,'TODO'),
-    ('TASK4','TASK1 TEST',4,4,'BACKLOG'),
-    ('TASK5','TASK1 TEST',4,4,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',13,4,1,'BACKLOG'),
+    ('TASK2','TASK1 TEST',8,4,1,'QA'),
+    ('TASK3','TASK1 TEST',2,4,1,'TODO'),
+    ('TASK4','TASK1 TEST',4,4,1,'BACKLOG'),
+    ('TASK5','TASK1 TEST',4,4,1,'IN_PROGRESS'),
 
-    ('TASK1','TASK1 TEST',3,3,'BACKLOG'),
-    ('TASK2','TASK2 TEST',4,3,'BACKLOG'),
-    ('TASK3','TASK3 TEST',5,3,'BACKLOG'),
+    ('TASK1','TASK1 TEST',3,3,1,'BACKLOG'),
+    ('TASK2','TASK2 TEST',4,3,1,'BACKLOG'),
+    ('TASK3','TASK3 TEST',5,3,1,'BACKLOG'),
 
-    ('TASK1','TASK1 TEST',25,4,'TODO'),
-    ('TASK1','TASK1 TEST',24,4,'TODO'),
+    ('TASK1','TASK1 TEST',25,4,1,'TODO'),
+    ('TASK1','TASK1 TEST',24,4,1,'TODO'),
 
-    ('TASK1','TASK1 TEST',23,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',22,4,'IN_PROGRESS'),
-    ('TASK1','TASK1 TEST',21,4,'QA'),
+    ('TASK1','TASK1 TEST',23,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',22,4,1,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',21,4,1,'QA'),
 
-    ('TASK1','TASK1 TEST',20,4,'BACKLOG'),
-    ('TASK2','TASK1 TEST',19,4,'QA'),
-    ('TASK3','TASK1 TEST',18,4,'TODO'),
-    ('TASK4','TASK1 TEST',17,4,'BACKLOG'),
-    ('TASK5','TASK1 TEST',16,4,'IN_PROGRESS'),
+    ('TASK1','TASK1 TEST',20,4,1,'BACKLOG'),
+    ('TASK2','TASK1 TEST',19,4,1,'QA'),
+    ('TASK3','TASK1 TEST',18,4,1,'TODO'),
+    ('TASK4','TASK1 TEST',17,4,1,'BACKLOG'),
+    ('TASK5','TASK1 TEST',16,4,1,'IN_PROGRESS'),
 
 
-    ('TASK6','TASK1 TEST',15,4,'BACKLOG');
+    ('TASK6','TASK1 TEST',15,4,1,'BACKLOG');
 
 

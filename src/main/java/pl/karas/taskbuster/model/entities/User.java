@@ -19,6 +19,7 @@ public class User {
     @Id
     private Long id;
     private String username;
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
     private Set<Authority> authorities;
